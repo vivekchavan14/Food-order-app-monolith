@@ -1,0 +1,1 @@
+export const MONGO_URI = "mongodb+srv://xyz:xyz@cluster0.qr61wis.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
