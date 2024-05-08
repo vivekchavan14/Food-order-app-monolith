@@ -4,7 +4,7 @@ import { VendorModel } from '../models/Vendor'
 
 export const createVendor = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { name, ownerName, pincode, password, foodType, address, email, phone } = req.body; // Extracting properties from req.body
+        const { name, ownerName, pincode, password, foodType, address, email, phone } = <CreateVendorInput>req.body; // Extracting properties from req.body
 
         const vendor = await VendorModel.create({
             name,
@@ -14,7 +14,11 @@ export const createVendor = async (req: Request, res: Response, next: NextFuncti
             email,
             password,
             pincode,
-            phone 
+            phone,
+            salt: '',
+            rating: 0,
+            serviceAvailable: false,
+            coverImages: [],
         });
 
         res.status(201).json({ success: true, data: vendor });
