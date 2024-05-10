@@ -13,7 +13,6 @@ interface VendorDoc extends Document {
     serviceAvailable: boolean;
     coverImages: string[];
     rating: number;
-//    foods: mongoose.Schema.Types.ObjectId[];
 }
 
 const VendorSchema = new Schema<VendorDoc>({
@@ -29,9 +28,8 @@ const VendorSchema = new Schema<VendorDoc>({
     serviceAvailable: { type: Boolean, required: true },
     coverImages: { type: [String] },
     rating: { type: Number },
-  //  foods: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Food' }]
 }, { timestamps: true });
 
-const VendorModel: Model<VendorDoc> = mongoose.model('Vendor', VendorSchema);
+export interface VendorModel extends Model<VendorDoc> {}
 
-export default VendorModel;
+export const VendorModel = mongoose.model<VendorDoc>('Vendor', VendorSchema);

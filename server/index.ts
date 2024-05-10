@@ -1,7 +1,7 @@
 const express = require('express'); //! import express from 'express';
 import { Express, Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
+import mongoose, { ConnectOptions } from 'mongoose';
 import {AdminRoutes,VendorRoutes} from './routes'
 import { MONGO_URI } from './config';
 const SERVER_PORT: number = 3000;
@@ -18,10 +18,13 @@ app.use("/vendor", VendorRoutes)
 mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
-}).then(result=>{
-   console.log(result);
-}).catch(err => console.error(err));
+   // useCreateIndex: true
+} as ConnectOptions).then(() => {
+    console.log("MongoDB connected successfully");
+}).catch(err => {
+    console.error("MongoDB connection error:", err);
+});
+
 
 
 app.listen(SERVER_PORT, () => {

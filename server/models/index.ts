@@ -1,1 +1,1 @@
-export * from './Vendor'
+export * from './Vendor'; // or whatever your filename is
